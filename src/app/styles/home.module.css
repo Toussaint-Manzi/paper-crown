@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bona+Nova:ital,wght@0,400;0,700;1,400&family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+
 
 .myFont{
     font-family: 'Outfit', sans-serif;
@@ -6,4 +8,8 @@
 
 .myFont2{
     font-family: "Bona Nova", serif;
+}
+
+.myFont3{
+    font-family: "Carter One", system-ui;
 }
