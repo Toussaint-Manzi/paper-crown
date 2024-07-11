@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import HomeSection from "./components/sections/Home";
 import Join from "./components/sections/Join";
 import Recommend from "./components/sections/Recommend";
+import Testimonial from "./components/sections/Testimonial";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <HomeSection/>
       <Join/>
       <Recommend/>
+      <Testimonial/>
       <Footer/>
     </main>
   );
