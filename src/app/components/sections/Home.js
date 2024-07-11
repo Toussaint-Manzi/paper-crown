@@ -23,7 +23,6 @@ const HomeSection = () => {
                     layout="fill"
                     objectFit="contain"
                     alt="Person"
-                    // style={{ top: '0%', left: '0%' }}
                 />
             </div>
         </div>
