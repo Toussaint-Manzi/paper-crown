@@ -45,7 +45,7 @@ const Navbar = () => {
           </button>
         </div>
         <div className='flex w-[85%] justify-between items-center'>
-          <ul className="hidden lgm:flex xl:w-[70%] space-x-4 w-[45%] justify-between relative">
+          <ul className="hidden lgm:flex xl:w-[70%] space-x-4 w-[40%] justify-between relative">
             <li className="relative">
               <Link href="/">
                 <h1 className={`text-[16px] font-medium ${router.pathname === '/' ? 'text-[#D71A30] font-bold' : 'text-black hover:text-[#D71A30]'}`}>Home</h1>
@@ -56,26 +56,14 @@ const Navbar = () => {
                 <p className={`font-medium ${router.pathname === '/About' ? 'text-[#D71A30] font-bold' : 'text-black hover:text-[#D71A30]'}`}>About us</p>
               </Link>
             </li>
-            <li
-              className="relative"
-              onMouseEnter={() => setIsDropdownVisible(true)}
-              onMouseLeave={() => setIsDropdownVisible(false)}
-            >
-              <Link href="/Packages">
-                <div className={`flex items-center ${router.pathname === '/Packages' ? 'text-[#D71A30] font-bold' : 'text-black hover:text-[#D71A30]'}`}>
-                  <p className="font-medium">Products</p>
-                  <FaArrowDown className='ml-2 text-[17px]' />
-                </div>
-              </Link>
-            </li>
             <li className="relative">
               <Link href="/our-work">
-                <p className={`font-medium ${router.pathname === '/our-work' ? 'text-[#D71A30] font-bold' : 'text-black hover:text-[#D71A30]'}`}>Our work</p>
+                <p className={`font-medium ${router.pathname === '/our-work' ? 'text-[#D71A30] font-bold' : 'text-black hover:text-[#D71A30]'}`}>Resources</p>
               </Link>
             </li>
             <li className="relative">
               <Link href="/Contact">
-                <p className={`font-medium ${router.pathname === '/Contact' ? 'text-[#D71A30] font-bold' : 'text-black hover:text-[#D71A30]'}`}>Contact</p>
+                <p className={`font-medium ${router.pathname === '/Contact' ? 'text-[#D71A30] font-bold' : 'text-black hover:text-[#D71A30]'}`}>Our Impact</p>
               </Link>
             </li>
           </ul>
@@ -99,21 +87,13 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="relative">
-              <Link href="/Packages" onClick={handleMenuToggle}>
-                <div className={`flex items-center ${router.pathname === '/Packages' ? 'text-[#D71A30] font-bold' : 'text-black hover=text-[#D71A30]'}`}>
-                  <p className="uppercase font-semibold">Products</p>
-                  <FaArrowDown className='ml-2 text-[17px]' />
-                </div>
-              </Link>
-            </li>
-            <li className="relative">
               <Link href="/our-work" onClick={handleMenuToggle}>
-                <p className={`uppercase font-semibold ${router.pathname === '/our-work' ? 'text-[#D71A30] font-bold' : 'text-black hover=text-[#D71A30]'}`}>Our work</p>
+                <p className={`uppercase font-semibold ${router.pathname === '/our-work' ? 'text-[#D71A30] font-bold' : 'text-black hover=text-[#D71A30]'}`}>Resources</p>
               </Link>
             </li>
             <li className="relative">
               <Link href="/Contact" onClick={handleMenuToggle}>
-                <p className={`uppercase font-semibold ${router.pathname === '/Contact' ? 'text-[#D71A30] font-bold' : 'text-black hover=text-[#D71A30]'}`}>Contact</p>
+                <p className={`uppercase font-semibold ${router.pathname === '/Contact' ? 'text-[#D71A30] font-bold' : 'text-black hover=text-[#D71A30]'}`}>Our Impact</p>
               </Link>
             </li>
           </ul>
