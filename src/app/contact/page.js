@@ -3,6 +3,15 @@ import Navbar from '../components/Navbar';
 import styles from '../styles/home.module.css';
 import Image from 'next/image';
 import decor from '../../../public/assets/images/decor2.png';
+import decor2 from '../../../public/assets/images/decor3.png';
+import { CiLocationOn } from "react-icons/ci";
+import { BiMessageMinus } from "react-icons/bi";
+import Link from 'next/link';
+import { BsTwitter, BsLinkedin } from 'react-icons/bs';
+import { AiFillInstagram } from 'react-icons/ai';
+import { MdEmail } from 'react-icons/md';
+import { MdOutlineLocalPhone } from "react-icons/md";
+
 
 
 const Contact = () => {
@@ -54,6 +63,56 @@ const Contact = () => {
                             Submit
                         </button>
                     </form>
+                </div>
+                <div className='w-[45%] bg-[#f0f8fc] h-[450px] p-[5%] rounded-xl'>
+                    <div className='relative w-[200px] h-[50px]'>
+                        <Image
+                            src={decor2}
+                            layout="fill"
+                            objectFit="contain"
+                            alt="Person"
+                        />
+                    </div>
+                    <h1 className={`text-[24px] text-black capitalize mb-10 font-[600] ${styles.myFont2} mt-5`}>Contact Information</h1>
+                    <div className='w-full grid grid-cols-2 gap-8 justify-between'>
+                        <div className=' flex justify-start items-center'>
+                            <CiLocationOn className='text-black text-3xl mr-2'/>
+                            <div className='flex flex-col justify-center'>
+                                <h1 className='text-black text-[18px]'>KK 280 st</h1>
+                                <h1 className='text-[#7E7979] text-[16px]'>Kanombe, kicukiro</h1>
+                            </div>
+                        </div>
+                        <div className=' flex justify-start items-center'>
+                            <BiMessageMinus className='text-black text-3xl mr-2'/>
+                            <div className='flex flex-col justify-center'>
+                                <h1 className='text-[#7E7979] text-[16px]'>Email</h1>
+                                <h1 className='text-black text-[18px]'>janedoe@gmail.com</h1>
+                            </div>
+                        </div>
+                        <div className=' flex justify-start items-center'>
+                            <MdOutlineLocalPhone className='text-black text-3xl mr-2'/>
+                            <div className='flex flex-col justify-center'>
+                                <h1 className='text-[#7E7979] text-[16px]'>Phone number</h1>
+                                <h1 className='text-black text-[18px]'>07857**345</h1>
+                            </div>
+                        </div>
+                        <div className=''>
+                            <div className='w-full flex items-center justify-between'>
+                                <Link href="https://www.instagram.com/dope_initiatives/" target='_blank' className='w-[45px] h-[45px] xs:w-[40px] xs:h-[40px] bg-[#181818] rounded-xl flex justify-center items-center cursor-pointer hover:bg-amber-500 hover:transition-all hover:duration-300'>
+                                    <AiFillInstagram className='text-white text-xl'/>
+                                </Link>
+                                <Link href="https://x.com/Dope_Initiative" target='_blank' className='w-[45px] h-[45px] xs:w-[40px] xs:h-[40px] bg-[#181818] rounded-xl flex justify-center items-center cursor-pointer hover:bg-amber-500 hover:transition-all hover:duration-300'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 256"><path fill="#fff" d="m218.12 209.56l-61-95.8l59.72-65.69a12 12 0 0 0-17.76-16.14l-55.27 60.84l-37.69-59.21A12 12 0 0 0 96 28H48a12 12 0 0 0-10.12 18.44l61 95.8l-59.76 65.69a12 12 0 1 0 17.76 16.14l55.31-60.84l37.69 59.21A12 12 0 0 0 160 228h48a12 12 0 0 0 10.12-18.44M166.59 204L69.86 52h19.55l96.73 152Z"/></svg>
+                                </Link>
+                                <Link href="https://www.linkedin.com/company/dopeinitiatives" target='_blank' className='w-[45px] h-[45px] xs:w-[40px] xs:h-[40px] bg-[#181818] rounded-xl flex justify-center items-center cursor-pointer hover:bg-amber-500 hover:transition-all hover:duration-300'>
+                                    <BsLinkedin className='text-white text-lg'/>
+                                </Link>
+                                <Link href="mailto:dopeinitiativesltd@gmail.com" target='_blank' className='w-[45px] h-[45px] xs:w-[40px] xs:h-[40px] bg-[#181818] rounded-xl flex justify-center items-center cursor-pointer hover:bg-amber-500 hover:transition-all hover:duration-300'>
+                                    <MdEmail className='text-white text-lg'/>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

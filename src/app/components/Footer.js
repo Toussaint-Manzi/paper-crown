@@ -4,7 +4,6 @@ import Link from 'next/link';
 import logo from '../../../public/assets/images/logo_light.png';
 import styles from '../styles/home.module.css';
 import { BsTwitter, BsLinkedin } from 'react-icons/bs';
-
 import { AiFillInstagram } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 
