@@ -40,7 +40,7 @@ export default function About() {
                 </div>
             </div>
             <div className='w-[45%] self-start xl:w-full'>
-                <h1 className={`text-[32px] text-[#FF0054] font-semibold xs:text-[25px] ${styles.myFont2}`}>Who we are</h1>
+                <h1 className={`text-[32px] text-[#D71A30] font-semibold xs:text-[25px] ${styles.myFont2}`}>Who we are</h1>
                 <h1 className={`text-[25px] text-[#343434] font-[600] grotesk  my-8 xs:text-[20px] ${styles.myFont2}`}>Paper Crown Rwanda is a feminist, non-profit organization in Rwanda, that works with youth to transform gender norms, foster leadership and create lasting social change.</h1>
                 <h1 className='text-[20px] text-black font-[300] roboto my-8 xs:text-[18px]'>Paper Crown Rwanda is a feminist, non-profit organization in Rwanda, that works with youth to transform gender norms, foster leadership and create lasting social change.</h1>
                 <button className='h-[60px] text-white text-lg mt-3 px-8 self-start bg-[#D71A30] rounded-xl flex items-center'>
