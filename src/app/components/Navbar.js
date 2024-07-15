@@ -52,7 +52,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="relative">
-              <Link href="/About">
+              <Link href="/about">
                 <p className={`font-medium ${router.pathname === '/About' ? 'text-[#D71A30] font-bold' : 'text-black hover:text-[#D71A30]'}`}>About us</p>
               </Link>
             </li>
