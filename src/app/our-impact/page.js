@@ -79,6 +79,26 @@ const OurImpact = () => {
                     />
                 </div>
             </div>
+            <div className='w-full flex justify-between my-20'>
+                <div className='w-[40%] flex flex-col justify-start items-start'>
+                    <h1 className={`text-[32px] text-[#D71A30] font-semibold xs:text-[25px] ${styles.myFont2}`}>Major and measurable shifts in harmful attitudes and beliefs</h1>
+                    <div className='w-[80%] h-[400px] relative my-10'>
+                        <Image
+                            alt="gallery"
+                            className="block h-full w-full rounded-2xl object-cover object-center cursor-pointer"
+                            src="/assets/images/people.png"
+                            fill
+                        />
+                    </div>
+                </div>
+                <div className='w-[50%]'>
+                    <h1 className='text-[18px] text-[#444343] mb-10'>Our work aims to influence both the hearts and minds of young people on a deep, personal level that will stand the test of time long after we have worked with them. Our approach is participatory, conversational, vulnerable, challenging, honest and transformative - and it works.</h1>
+                    <h1 className='text-[18px] text-[#D71A30] font-[600] mb-3'>Some highlights of our impact in terms of attitudes and beliefs include:</h1>
+                    <h1 className='text-[18px] text-[#444343] mb-5'>Significant improvements among both boys and girls from baseline to endline focus group discussions, related to gender inequality and stereotypes, power and agency, decision making, gender-based violence, victim blaming, consent and youth leadership in the community.</h1>
+                    <h1 className='text-[18px] text-[#444343] mb-5'>Significant improvements among both boys and girls from baseline to endline focus group discussions, related to gender inequality and stereotypes, power and agency, decision making, gender-based violence, victim blaming, consent and youth leadership in the community.</h1>
+                    <h1 className='text-[18px] text-[#444343] mb-5'>Girls positively transformed their attitudes and beliefs around gender equality and gender-based violence from an average of score of 66% at baseline to 93% at endline in our latest project, My Voice, My Power.</h1>
+                </div>
+            </div>
         </div>
         <Footer/>
     </div>
