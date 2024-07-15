@@ -62,8 +62,8 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="relative">
-              <Link href="/Contact">
-                <p className={`font-medium ${router.pathname === '/Contact' ? 'text-[#D71A30] font-bold' : 'text-black hover:text-[#D71A30]'}`}>Our Impact</p>
+              <Link href="/our-impact">
+                <p className={`font-medium ${router.pathname === '/our-impact' ? 'text-[#D71A30] font-bold' : 'text-black hover:text-[#D71A30]'}`}>Our Impact</p>
               </Link>
             </li>
           </ul>
