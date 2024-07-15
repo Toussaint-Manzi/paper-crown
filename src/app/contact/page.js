@@ -11,6 +11,7 @@ import { BsTwitter, BsLinkedin } from 'react-icons/bs';
 import { AiFillInstagram } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 import { MdOutlineLocalPhone } from "react-icons/md";
+import Footer from '../components/Footer';
 
 
 
@@ -18,7 +19,7 @@ const Contact = () => {
   return (
     <div className='bg-white h-screen w-full'>
         <Navbar/>
-        <div className='pt-[100px] px-[13%]'>
+        <div className='pt-[100px] px-[13%] pb-24'>
             <div className='flex justify-between items-center w-full mx-auto h-[250px] rounded-[40px] px-[13%] mb-12'>
                 <div className='relative w-[90px] h-[110px]'>
                     <Image
@@ -116,6 +117,7 @@ const Contact = () => {
                 </div>
             </div>
         </div>
+        <Footer/>
     </div>
   )
 }

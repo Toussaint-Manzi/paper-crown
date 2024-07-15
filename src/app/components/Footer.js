@@ -39,7 +39,7 @@ const Footer = () => {
         </div>
         <div className='h-[1px] w-full bg-gray-700 mt-2'>
         </div>
-        <div className='mt-5 w-full flex justify-between items-center xl:flex-col'>
+        <div className='mt-5 pb-10 w-full flex justify-between items-center xl:flex-col'>
             <p className='text-white'>Paper Crown © {new Date().getFullYear()} All rights reserved</p>
         </div> 
     </footer>
