@@ -11,6 +11,8 @@ import Footer from '../components/Footer';
 import decor from '../../../public/assets/images/decor.png';
 
 export default function About() {
+    const logos = Array.from({ length: 15 }, (_, i) => `/assets/images/logo${i + 1}.png`);
+
     return (
       <div className={`bg-white h-full ${styles.myFont}`}>
         <Navbar/>
@@ -119,15 +121,31 @@ export default function About() {
                     <h1 className={`text-[#D71A30] text-xl font-semibold ${styles.myFont2}`}>Our Founding Story</h1>
                 </div>
                 <h1 className={`text-[25px] text-[#343434] font-[600] grotesk  my-8 xs:text-[20px] ${styles.myFont2}`}>Paper Crown was founded by gender and development specialist Katie Carlson, a Canadian feminist activist and resident of Rwanda since 2012.</h1>
-                <h1 className='text-[20px] text-black font-[300] roboto my-8 xs:text-[18px]'>Throughout her time spent living and working in the country, Katie was continually inspired by the stories of Rwanda’s girls and young women, who persistently struggled with issues of discrimination and violence despite the strong leadership and political will shown across the country’s government to create a more gender equal society in Rwanda. After piloting a series of participatory workshops with adolescent girls that directly called out the gender issues permeating their daily lives and empowered girls to know their rights and believe in themselves, Katie realized there was tremendous potential to break the intergenerational cycle of gender inequality and violence by spending meaningful time with young people and changing hearts and minds for the better - through feminist critical thinking and the development of strong personal self-confidence and leadership skills that would lead to community advocacy and transformative gender norms change.</h1>
-                <button className='h-[60px] text-white text-lg mt-3 px-8 self-start bg-[#D71A30] rounded-xl flex items-center'>
-                    Visit Paper Crown
-                    <IoIosArrowRoundForward className='text-3xl ml-1'/>
-                </button>
-                <div className='relative w-full'>
-                </div>
+                <h1 className='text-[18px] text-black font-[300] my-8 xs:text-[18px]'>Throughout her time spent living and working in the country, Katie was continually inspired by the stories of Rwanda’s girls and young women, who persistently struggled with issues of discrimination and violence despite the strong leadership and political will shown across the country’s government to create a more gender equal society in Rwanda. After piloting a series of participatory workshops with adolescent girls that directly called out the gender issues permeating their daily lives and empowered girls to know their rights and believe in themselves, Katie realized there was tremendous potential to break the intergenerational cycle of gender inequality and violence by spending meaningful time with young people and changing hearts and minds for the better - through feminist critical thinking and the development of strong personal self-confidence and leadership skills that would lead to community advocacy and transformative gender norms change.</h1>
             </div>
         </div>
+        <div className='h-full pb-[200px] w-full px-[13%] flex flex-row justify-between items-start 2xl:h-full xl:py-[150px]'>
+            <div className='w-[40%]'>
+                <div className='flex items-center w-[55%] justify-between'>
+                <div className="h-[2px] w-[80px] bg-black"></div>
+                <h1 className='text-[#D71A30] text-xl font-semibold'>Our Members & Partners</h1>
+                </div>
+                <h1 className='text-[25px] text-[#343434] font-[600] my-8 xs:text-[20px]'>Our partners make it possible for us to do what we do. We are proud to list the following organizations as collaborators and supporters of the work of Paper Crown.</h1>
+            </div>
+            
+            {/* Logos Container */}
+            <div className='grid grid-cols-4 gap-8 w-[50%]'>
+                {Array.from({ length: 4 }).map((_, colIdx) => (
+                <div key={colIdx} className='flex flex-col items-center space-y-4 relative'>
+                    {logos.slice(colIdx * 4, colIdx * 4 + 4).map((logo, logoIdx) => (
+                    <Image key={logoIdx} src={logo} alt={`Logo ${colIdx * 4 + logoIdx + 1}`} width={96} height={96} objectFit="contain" />
+                    ))}
+                    {colIdx < 3 && <div className='absolute right-0 top-0 bottom-0 w-[2px] bg-gray-300'></div>}
+                </div>
+                ))}
+            </div>
+        </div>
+
         <Footer/>
       </div>
     );
