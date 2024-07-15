@@ -4,7 +4,6 @@ import Link from 'next/link';
 import logo from '../../../public/assets/images/logo_light.png';
 import styles from '../styles/home.module.css';
 import { BsTwitter, BsLinkedin } from 'react-icons/bs';
-
 import { AiFillInstagram } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 
@@ -40,7 +39,7 @@ const Footer = () => {
         </div>
         <div className='h-[1px] w-full bg-gray-700 mt-2'>
         </div>
-        <div className='mt-5 w-full flex justify-between items-center xl:flex-col'>
+        <div className='mt-5 pb-10 w-full flex justify-between items-center xl:flex-col'>
             <p className='text-white'>Paper Crown © {new Date().getFullYear()} All rights reserved</p>
         </div> 
     </footer>
