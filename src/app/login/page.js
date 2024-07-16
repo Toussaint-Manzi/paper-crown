@@ -18,7 +18,7 @@ const Login = () => {
                         <div className='w-full flex flex-col justify-between'>
                             <div className='w-full mb-8'>
                                 <label className='text-[18px] text-black'>Your Email</label>
-                                <input type="text" name="" id="" placeholder='Enter name' className='w-full mt-3 text-[#A4A4A4] px-5 h-[50px] bg-[#f0f8fc] rounded-lg placeholder:text-[#A4A4A4] outline-none'/>
+                                <input type="text" name="" id="" placeholder='Enter Email' className='w-full mt-3 text-[#A4A4A4] px-5 h-[50px] bg-[#f0f8fc] rounded-lg placeholder:text-[#A4A4A4] outline-none'/>
                             </div>
                             <div className='w-full'>
                                 <label className='text-[18px] text-black'>Your Password</label>
@@ -29,7 +29,7 @@ const Login = () => {
                             Login
                         </button>
                     </form>
-                    <h1 className='text-[18px] text-center text-black mt-3' >Don’t have acount? <span className='text-[#D71A30]'>Sign up</span></h1>
+                    <h1 className='text-[18px] text-center text-black mt-3' >Don’t have account? <span className='text-[#D71A30]'>Sign up</span></h1>
                 </div>
             </div>
         </div>
