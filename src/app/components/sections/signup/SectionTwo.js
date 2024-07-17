@@ -1,6 +1,28 @@
-import React from 'react'
+'use client';
+import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../../../lib/hooks';
+import { updateSectionTwo } from '../../../../lib/features/signup/signupStepSlice';
+import { nextStep, prevStep } from '../../../../lib/features/signup/signupStepSlice';
+
 
 const SectionTwo = () => {
+    const dispatch = useAppDispatch();
+    const formData = useAppSelector((state) => state.signup.formData.sectionTwo);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        dispatch(updateSectionTwo({ ...formData, [name]: value }));
+    };
+
+    const handleNext = () => {
+        dispatch(nextStep());
+    };
+
+    const handlePrev = (e) => {
+        e.preventDefault;
+        dispatch(prevStep());
+    };
+
   return (
     <form action="" className='w-[50%] mt-14'>
         <div className='w-full flex flex-col justify-between'>
@@ -32,7 +54,7 @@ const SectionTwo = () => {
             </div>
         </div>
         <div className='w-full flex justify-between'>
-            <button className='h-[60px] w-[30%] text-[#D71A30] text-lg mt-10 px-8 self-start bg-[#FFE2E6] rounded-[14px] flex justify-center items-center'>
+            <button className='h-[60px] w-[30%] text-[#D71A30] text-lg mt-10 px-8 self-start bg-[#FFE2E6] rounded-[14px] flex justify-center items-center' onClick={handlePrev}>
                 Back
             </button>
             <button className='h-[60px] w-[65%] text-white text-lg mt-10 px-8 self-start bg-[#D71A30] rounded-[14px] flex justify-center items-center'>

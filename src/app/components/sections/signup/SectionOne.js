@@ -1,6 +1,27 @@
-import React from 'react'
+'use client';
+import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../../../lib/hooks';
+import { updateSectionOne } from '../../../../lib/features/signup/signupStepSlice';
+import { nextStep, prevStep } from '../../../../lib/features/signup/signupStepSlice';
 
 const SectionOne = () => {
+    const dispatch = useAppDispatch();
+    const formData = useAppSelector((state) => state.signup.formData.sectionOne);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        dispatch(updateSectionOne({ ...formData, [name]: value }));
+    };
+
+    const handleNext = (e) => {
+        e.preventDefault();
+        dispatch(nextStep());
+    };
+
+    const handlePrev = () => {
+        dispatch(prevStep());
+    };
+
   return (
     <form action="" className='w-[50%] mt-14'>
         <div className='w-full flex flex-col justify-between'>
@@ -40,7 +61,7 @@ const SectionOne = () => {
                 </select>
             </div>
         </div>
-        <button className='h-[60px] w-full text-white text-lg mt-10 px-8 self-start bg-[#D71A30] rounded-[14px] flex justify-center items-center'>
+        <button className='h-[60px] w-full text-white text-lg mt-10 px-8 self-start bg-[#D71A30] rounded-[14px] flex justify-center items-center' onClick={handleNext}>
             Continue
         </button>
     </form>
