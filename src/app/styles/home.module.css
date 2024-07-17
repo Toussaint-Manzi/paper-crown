@@ -13,3 +13,16 @@
 .myFont3{
     font-family: "Carter One", system-ui;
 }
+
+.stepIcon {
+    color: #FED6DB; /* Unfinished steps color */
+    font-family: 'Outfit', sans-serif;
+}
+.stepCompleted {
+    color:  #D71A30 !important; /* Finished steps color */
+    font-family: 'Outfit', sans-serif;
+}
+.stepActive {
+    color:  #D71A30 !important; /* Current step color */
+    font-family: 'Outfit', sans-serif;
+}
