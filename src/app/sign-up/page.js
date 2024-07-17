@@ -48,11 +48,11 @@ const Signup = () => {
         {step === 0 && <SectionOne />}
         {step === 1 && <SectionTwo />}
 
-        <div className='mt-4'>
+        {/* <div className='mt-4'>
           {step > 0 && <button onClick={handlePrev} className='mr-2'>Previous</button>}
           {step < 1 && <button onClick={handleNext}>Next</button>}
-        </div>
-        <h1 className='w-[50%] text-[18px] text-center text-black mt-3'>Already have account? <span className='text-[#D71A30]'>Login</span></h1>
+        </div> */}
+        <h1 className='w-[50%] text-[18px] text-center text-black mt-1'>Already have account? <span className='text-[#D71A30]'>Login</span></h1>
       </div>
       <div className='w-1/2 bg-[#fcf2f6] py-20 px-20'>
         <div className='py-[25%] w-[90%] flex flex-col justify-center items-center'>
