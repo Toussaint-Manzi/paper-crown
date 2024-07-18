@@ -1,11 +1,11 @@
 import Navbar from '@/app/components/Navbar'
 import React from 'react'
 import Image from 'next/image'
-
+import styles from '../../../styles/home.module.css';
 
 const ResourceDetails = () => {
   return (
-    <div className='bg-white h-screen'>
+    <div className='bg-white h-full'>
         <Navbar/>
         <div className='w-full px-[10%] pt-[150px]'>
             <div className='w-full flex justify-between'>
@@ -59,8 +59,65 @@ const ResourceDetails = () => {
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <h1 className={`text-[28px] font-[800] text-black ${styles.myFont2}`}>Community of Feminist Practice Steering committee introductory meeting</h1>
+                    </div>
                     
                 </div>
+                <div className='w-[30%]'>
+                    <div>
+                        <div className='flex w-full'>
+                            <h1 className='text-[18px] text-black font-[500]'>Resources</h1>
+                            <div className='flex justify-center items-center w-[30px] h-[30px] rounded-[8px] bg-[#D8E6FF] ml-5'>
+                                <h1 className='text-[16px] text-black font-[500]'>12</h1>
+                            </div>
+                        </div>
+                        <div className='flex w-2/3 justify-start items-center my-7'>
+                            <div>
+                                <h1 className='text-[14px] text-black font-[400]'>The Role of Rwandan Women in Achieving Gender Equality</h1>
+                                <h1 className='text-[12px] text-[#B0B0B0] font-[600]'>PDF</h1>
+                            </div>
+                            <svg width="30" height="24" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.5" d="M3.25 12.5C3.25 14.857 3.25 16.0355 3.98223 16.7677C4.71447 17.5 5.89297 17.5 8.25 17.5H13.25C15.607 17.5 16.7855 17.5 17.5177 16.7677C18.25 16.0355 18.25 14.857 18.25 12.5" stroke="#858484" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10.75 2.5V13.3333M10.75 13.3333L14.0833 9.6875M10.75 13.3333L7.41663 9.6875" stroke="#858484" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div className='w-full'>
+                        <div className='flex w-full'>
+                            <h1 className='text-[18px] text-black font-[500]'>Comments</h1>
+                            <div className='flex justify-center items-center w-[30px] h-[30px] rounded-[8px] bg-[#D8E6FF] ml-5'>
+                                <h1 className='text-[16px] text-black font-[500]'>12</h1>
+                            </div>
+                        </div>
+                        <textarea name="" rows={5} id="" placeholder='Write something...' className='w-full my-7 px-4 py-2 outline-none text-[#000] border border-[#F4F4F4]'></textarea>
+                    </div>
+                    <div className='w-full'>
+                        { [1,2,3].map((comment, index) => (
+                            <div className='border border-[#F4F4F4] p-4' key={index}>
+                                <div className='flex items-center'>
+                                    <div
+                                        className='w-[40px] h-[40px] bg-black rounded-full relative overflow-hidden mr-2'
+                                        key={index}
+                                    >
+                                        <Image
+                                            src='/assets/images/person.png'
+                                            alt='profile'
+                                            fill
+                                            className='object-cover'
+                                        />
+                                    </div>
+                                    <div>
+                                        <h1 className='text-[14px] text-black font-[400]'>Ian Nunez</h1>
+                                        <h1 className='text-[12px] text-[#B0B0B0] font-[600]'>14:24 AM</h1>
+                                    </div>
+                                </div>
+                                <h1 className='text-[14px] text-[#B0B0B0] font-[400] my-3'>No those pups I marginalised activities blue. Prioritize due so developing will didn't meeting shoulder back-end elephant. Points backwards problem kpis wanted.</h1>
+                            </div>
+                        )) }
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
