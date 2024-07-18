@@ -57,7 +57,18 @@ const Home = () => {
                                     key={index}
                                 >
                                     <div className='flex justify-between items-center w-[150px] h-[35px] bg-black rounded-[10px] self-end px-4'>
-                                        <MdCalendarMonth className='text-[#9A9A9A] text-[23px]'/>
+                                        <svg width="22" height="22" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4.5 1.5V3" stroke="#9A9A9A" stroke-width="0.6" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.5 1.5V3" stroke="#9A9A9A" stroke-width="0.6" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M2.25 5.04492H10.75" stroke="#9A9A9A" stroke-opacity="0.51" stroke-width="0.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M11 4.75V9C11 10.5 10.25 11.5 8.5 11.5H4.5C2.75 11.5 2 10.5 2 9V4.75C2 3.25 2.75 2.25 4.5 2.25H8.5C10.25 2.25 11 3.25 11 4.75Z" stroke="#9A9A9A" stroke-width="0.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.34729 7.3501H8.35179" stroke="#9A9A9A" stroke-opacity="0.51" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.34729 8.8501H8.35179" stroke="#9A9A9A" stroke-opacity="0.51" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M6.4978 7.3501H6.5023" stroke="#9A9A9A" stroke-opacity="0.51" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M6.4978 8.8501H6.5023" stroke="#9A9A9A" stroke-opacity="0.51" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M4.64709 7.3501H4.65159" stroke="#9A9A9A" stroke-opacity="0.51" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M4.64697 8.8501H4.65146" stroke="#9A9A9A" stroke-opacity="0.51" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
                                         <h1 className='text-[16px] text-[#9A9A9A] font-[500]'>07 june 2023</h1>
                                     </div>
                                     <div className='w-full px-[3%]'>
