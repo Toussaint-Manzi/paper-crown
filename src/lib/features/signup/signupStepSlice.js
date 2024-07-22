@@ -3,8 +3,19 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   step: 0,
   formData: {
-    sectionOne: {},
-    sectionTwo: {}
+    sectionOne: {
+      fullName: '',
+      email: '',
+      phoneNumber: '',
+      gender: '',
+      country: ''
+    },
+    sectionTwo: {
+      organisation: '',
+      position: '',
+      password: '',
+      confirmPassword: ''
+    }
   }
 };
 
@@ -28,5 +39,4 @@ const signupSlice = createSlice({
 });
 
 export const { nextStep, prevStep, updateSectionOne, updateSectionTwo } = signupSlice.actions;
-
 export default signupSlice.reducer;

@@ -67,9 +67,11 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <button className='h-[50px] text-white w-[150px] bg-[#D71A30] rounded-xl'>
-            Join Now
-          </button>
+          <Link href="/sign-up">
+            <button className='h-[50px] text-white w-[150px] bg-[#D71A30] rounded-xl'>
+              Join Now
+            </button>
+          </Link>
         </div>
         <div className={`fixed inset-y-0 right-0 w-64 bg-white shadow-xl transform transition-transform ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} lgm:hidden`}>
           <button onClick={handleMenuToggle} aria-label="Toggle menu" className='p-4'>
