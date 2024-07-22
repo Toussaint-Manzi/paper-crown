@@ -5,6 +5,8 @@ import { updateSectionOne, nextStep } from '../../../../lib/features/signup/sign
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { sectionOneSchema } from '../../../../lib/validations/validationSchemas';
+import { countries } from '../../../../lib/countries';
+
 
 const SectionOne = () => {
     const dispatch = useAppDispatch();
@@ -51,6 +53,7 @@ const SectionOne = () => {
                         <option value="Female">Female</option>
                         <option value="Non-Binary">Non-Binary</option>
                         <option value="Other">Other</option>
+                        <option value="Prefer Not to say">Prefer Not to say</option>
                     </select>
                     {errors.gender && <p className="text-red-500">{errors.gender.message}</p>}
                 </div>
@@ -58,10 +61,9 @@ const SectionOne = () => {
                     <label className='text-[18px] text-black'>Country</label>
                     <select name="country" className="text-[#A4A4A4] mt-3 px-5 h-[50px] bg-[#f0f8fc] rounded-lg placeholder:text-[#A4A4A4] outline-none block w-full p-2.5" {...register('country')}>
                         <option value="">Select country</option>
-                        <option value="US">US</option>
-                        <option value="CA">CA</option>
-                        <option value="FR">FR</option>
-                        <option value="DE">DE</option>
+                        { countries.map((country, index)=>(
+                            <option value={country} key={index}>{country}</option>
+                        )) }
                     </select>
                     {errors.country && <p className="text-red-500">{errors.country.message}</p>}
                 </div>

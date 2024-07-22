@@ -7,7 +7,7 @@ const gender = ['Male', 'Female', 'Non-Binary', 'Other'];
 export const sectionOneSchema = yup.object().shape({
   fullName: yup.string().required('Full name is required'),
   email: yup.string().email('Invalid email').required('Email is required'),
-  phoneNumber: yup.string().matches(phoneNumberRegex, 'Please provide a valid phone number (+2507xxxxxxxx)').required('Phone number is required'),
+  phoneNumber: yup.string().matches(/^\d{9}$/, 'Please provide a valid phone number (78X XXXXXXX)').required('Phone number is required'),
   gender: yup.string().oneOf(gender, 'Select a valid gender').required('Gender is required'),
   country: yup.string().required('Country is required'),
 });
