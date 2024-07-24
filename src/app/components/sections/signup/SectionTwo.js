@@ -5,7 +5,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch, useAppSelector } from '../../../../lib/hooks';
 import { updateSectionTwo, nextStep, prevStep } from '../../../../lib/features/signup/signupStepSlice';
 import { sectionTwoSchema } from '../../../../lib/validations/validationSchemas';
-import axios from 'axios';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5'; // Import icons
 import { userSignUpAsync } from '@/lib/services/authService';
 import { ToastContainer, toast } from 'react-toastify';

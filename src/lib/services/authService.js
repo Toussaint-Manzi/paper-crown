@@ -9,10 +9,10 @@ export const selectAccessToken = (state) =>
 
 export const userSignInAsync = createAsyncThunk(
   '/auth/user/sign-in',
-  async ({ email, password }, thunkAPI) => {
+  async ({ account, password }, thunkAPI) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/v1/auth/login`, {
-        account:email,
+      const response = await axios.post(`${API_BASE_URL}/api/v1/user/login`, {
+        account,
         password,
       });
       const { data } = response;
@@ -90,7 +90,6 @@ export const quizGenerator = createAsyncThunk(
 export const companyProfileSubmission = createAsyncThunk(
   "profile/company",
   async ({ formData }, thunkAPI) => {
-    console.log('hiiiiii', formData);
     const accessToken = selectAccessToken(thunkAPI.getState());
     const headers = {
       Authorization: `Bearer ${accessToken}`,

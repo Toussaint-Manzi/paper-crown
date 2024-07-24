@@ -11,7 +11,6 @@ import { Stepper, Step, StepLabel } from '@mui/material';
 
 const Signup = () => {
   const step = useAppSelector((state) => state.signup.step);
-  console.log('tttt', step);
   const dispatch = useAppDispatch();
 
   const handleNext = () => {

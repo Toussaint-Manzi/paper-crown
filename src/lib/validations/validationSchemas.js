@@ -19,3 +19,8 @@ export const sectionTwoSchema = yup.object().shape({
   password: yup.string().matches(passwordRegex, 'Password must have at least 8 characters, including uppercase, lowercase, and a digit').required('Password is required'),
   confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords do not match').required('Confirm password is required'),
 });
+
+export const loginSchema = yup.object().shape({
+  email: yup.string().email('Invalid email').required('Email is required'),
+  password: yup.string().required('Password is required'),
+});
