@@ -4,7 +4,7 @@ const initialState = {
   step: 0,
   formData: {
     sectionOne: {
-      fullName: '',
+      fullname: '',
       email: '',
       phoneNumber: '',
       gender: '',

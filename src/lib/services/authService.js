@@ -23,25 +23,19 @@ export const userSignInAsync = createAsyncThunk(
   }
 );
 
-export const userSignUpAsync = async ({
-    email,
-    password,
-    phone,
-    role
-    }) => {
+export const userSignUpAsync = createAsyncThunk(
+  '/auth/user/sign-up',
+  async ({ formData }, thunkAPI) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/v1/account/signup`, {
-        email,
-        password,
-        phone,
-        role
+      const response = await axios.post(`${API_BASE_URL}/api/v1/user/signup`, {
+        ...formData, gender:'male'
       });
-      const { status } = response;
-      return status;
+      return response;
     } catch (error) {
-      return error.response.status;
+      return thunkAPI.rejectWithValue(error);
     }
-};
+  }
+);
 
 export const otpVerification = async ({otpCode}) => {
   try {
@@ -96,6 +90,7 @@ export const quizGenerator = createAsyncThunk(
 export const companyProfileSubmission = createAsyncThunk(
   "profile/company",
   async ({ formData }, thunkAPI) => {
+    console.log('hiiiiii', formData);
     const accessToken = selectAccessToken(thunkAPI.getState());
     const headers = {
       Authorization: `Bearer ${accessToken}`,
