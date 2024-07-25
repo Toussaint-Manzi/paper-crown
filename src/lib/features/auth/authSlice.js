@@ -18,7 +18,7 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(userSignInAsync.fulfilled, (state, action) => {
-        state.userStudent = action.payload.data.user;
+        state.userClient = action.payload.data.user;
         state.access_token = action.payload.data.token;
       })
   },
