@@ -31,6 +31,13 @@ const Home = () => {
         ))
     );
 
+    const truncatedName = (word) => {
+        console.log(word);
+        return word.length > 30
+        ? word.slice(0, 10 - 3) + "..." // Slice the string to 10 - 3 and add "..."
+        : word;
+    } 
+
     return (
         <div className='bg-white h-full'>
             <Navbar />
@@ -78,7 +85,7 @@ const Home = () => {
                                             className='w-[350px] h-[210px] flex flex-col justify-between p-3'
                                             style={{
                                                 backgroundColor: '#F9F0EC',
-                                                backgroundImage: 'url(/assets/images/person.png)',
+                                                backgroundImage: `url(${res.thumbnail})`,
                                                 backgroundRepeat: 'no-repeat',
                                                 backgroundPosition: 'center',
                                                 backgroundSize: 'cover',
@@ -98,12 +105,12 @@ const Home = () => {
                                                     <path d="M4.64709 7.3501H4.65159" stroke="#9A9A9A" strokeOpacity="0.51" strokeLinecap="round" strokeLinejoin="round" />
                                                     <path d="M4.64697 8.8501H4.65146" stroke="#9A9A9A" strokeOpacity="0.51" strokeLinecap="round" strokeLinejoin="round" />
                                                 </svg>
-                                                <h1 className='text-[16px] text-[#9A9A9A] font-[500]'>07 june 2023</h1>
+                                                <h1 className='text-[16px] text-[#9A9A9A] font-[500]'>{res.createdAt.substring(0,10)}</h1>
                                             </div>
                                             <div className='w-full px-[3%]'>
                                                 <div className='flex flex-col items-start justify-center w-full h-[80px] rounded-[10px] pl-3' style={{ background: 'rgba(0, 0, 0, 0.5)' }}>
-                                                    <h1 className='text-[20px] text-white font-[600]'>Mobilizing Communities</h1>
-                                                    <h1 className='text-[17px] text-white font-[300]'>Examine traditional Rwandan crafts...</h1>
+                                                    <h1 className='text-[20px] text-white font-[600]'>{res.title}</h1>
+                                                    <h1 className='text-[17px] text-white font-[300]'>{truncatedName(res.content)}</h1>
                                                 </div>
                                             </div>
                                         </div>
