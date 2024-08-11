@@ -12,11 +12,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5'; // Import icons
 import { useAppDispatch } from '@/lib/hooks';
+import { useRouter } from 'next/navigation';
 
 
 
 const Login = () => {
     const [isLoading , setIsloading] = useState(false);
+    const router  = useRouter();
     const dispatch = useAppDispatch();
     const [passwordVisible, setPasswordVisible] = useState(false);
     const formData = {
@@ -36,7 +38,7 @@ const Login = () => {
             toast.success('User logged successfully', {
               autoClose: 3000,
             });
-            // router.push('/login');
+            router.push('/dashboard/user/home');
           } else {
             toast.error('Invalid credentials , please try again', {
               autoClose: 3000,

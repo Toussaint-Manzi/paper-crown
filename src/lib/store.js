@@ -3,10 +3,12 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import signupReducer from './features/signup/signupStepSlice';
 import authReducer from './features/auth/authSlice';
+import allResourcesReducer from './features/allResources/allResourceSlice';
 
 const rootReducer = combineReducers({
   signup: signupReducer,
   authData: authReducer,
+  allResources: allResourcesReducer
 });
 
 const persistConfig = {
