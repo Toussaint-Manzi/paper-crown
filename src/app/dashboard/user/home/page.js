@@ -6,19 +6,42 @@ import { CiSearch } from "react-icons/ci";
 import { MdCalendarMonth } from "react-icons/md";
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllResources } from '@/lib/services/userServices';
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { getAllResources, getAllTopics } from '@/lib/services/userServices';
 import { AiOutlineInbox } from "react-icons/ai";
 import Footer from '@/app/components/Footer';
+import { useRouter } from 'next/navigation';
 
 const Home = () => {
+    const router = useRouter();
     const user = useSelector(state => state.authData.userClient);
     const dispatch = useDispatch();
     const resources = useSelector(state => state.allResources);
+    const topics = useSelector( state => state.allTopics);
     const [isLoading, setIsLoading] = useState(true);
+    const [openTopic, setOpenTopic] = useState(null);
+    const [isArrowDown, setIsArrowDown] = useState(true);
+
+    const toggleArrow = () => {
+        setIsArrowDown(!isArrowDown);
+    };
+
+    const handleClick = (data) => {
+        router.push(`/dashboard/user/resource-details?data=${encodeURIComponent(JSON.stringify(data))}`);
+    };
+    
 
     useEffect(() => {
-        dispatch(getAllResources()).finally(() => setIsLoading(false));
+        setIsLoading(true); // Set loading state to true at the beginning
+        Promise.all([
+            dispatch(getAllResources()),
+            dispatch(getAllTopics()) // Add your second action here
+        ]).finally(() => setIsLoading(false));
     }, [dispatch]);
+
+    const toggleDropdown = (topicId) => {
+        setOpenTopic(openTopic === topicId ? null : topicId); // Toggle the dropdown for the selected topic
+    };
 
     const renderSkeletons = () => (
         Array.from({ length: 9 }).map((_, index) => (
@@ -32,7 +55,6 @@ const Home = () => {
     );
 
     const truncatedName = (word) => {
-        console.log(word);
         return word.length > 30
         ? word.slice(0, 10 - 3) + "..." // Slice the string to 10 - 3 and add "..."
         : word;
@@ -45,15 +67,49 @@ const Home = () => {
                 <div className='w-full flex justify-between'>
                     <div>
                         <h1 className='text-[20px] text-black font-[700]'>Morning ! <span className='font-[300] ml-3'>{user.fullname}</span></h1>
-                        <h1 className='text-[17px] text-black font-[300] mt-2'>June 17, 2024</h1>
-                    </div>
-                    <div className='flex items-center px-3 border border-[#E0E0E0] h-[50px] rounded-[14px] w-[350px]'>
-                        <CiSearch className='text-[#9C9C9C] w-[24px] h-[24px]' />
-                        <input type="text" className='h-[40px] text-[#9C9C9C] font-[300] ml-2 w-[350px] outline-none border-none' placeholder='Search by topic...' />
+                        <h1 className='text-[17px] text-black font-[300] mt-2'>{new Date().toString().substring(0,16)}</h1>
                     </div>
                 </div>
                 <div className='w-full flex justify-start py-8'>
-                    <div className='h-[400px] w-[230px] px-3 border border-[#E0E0E0] rounded-[14px]'>
+                    <div className='h-full w-[300px] px-3 border border-[#E0E0E0] rounded-[14px]'>
+                        <div className='w-full flex justify-start py-8'>
+                            <div className='w-full'>
+                                {isLoading ? (
+                                    <p>Loading topics...</p>
+                                ) : (
+                                    topics.map((topic) => (
+                                        <div key={topic.id} className='w-full mb-4'>
+                                            <div
+                                                className='w-full cursor-pointer px-4 rounded-md flex justify-between items-center'
+                                                onClick={() => toggleDropdown(topic.id)}
+                                            >
+                                                <div className='flex items-center'>
+                                                    <div className='h-3 w-3 rounded-full bg-[#D9D9D9] mr-3'></div>
+                                                    <h2 className='text-[16px] font-[500] text-black'>{topic.title}</h2>
+                                                </div>
+                                                <div onClick={toggleArrow}>
+                                                    {isArrowDown ? (
+                                                        <IoIosArrowDown className='text-2xl text-[#D9D9D9]' />
+                                                    ) : (
+                                                        <IoIosArrowUp className='text-2xl text-[#D9D9D9]' />
+                                                    )}
+                                                </div>
+                                            </div>
+                                            {openTopic === topic.id && (
+                                                <div className='ml-10 mt-2'>
+                                                    {topic.subtopics.map((subtopic) => (
+                                                        <div key={subtopic.id} className='py-1'>
+                                                            <p className='text-[14px] text-gray-700'>{subtopic.title}</p>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                            {/* Other content can go here */}
+                        </div>
                         {/* Sidebar for filters */}
                     </div>
                     <div className='w-full ml-16'>
@@ -80,7 +136,7 @@ const Home = () => {
                                 </div>
                             ) : (
                                 resources.map((res, index) => (
-                                    <div key={index}>
+                                    <div key={index} onClick={() => handleClick({ resource: res })}>
                                         <div
                                             className='w-[350px] h-[210px] flex flex-col justify-between p-3'
                                             style={{

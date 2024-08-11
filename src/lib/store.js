@@ -4,11 +4,13 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 import signupReducer from './features/signup/signupStepSlice';
 import authReducer from './features/auth/authSlice';
 import allResourcesReducer from './features/allResources/allResourceSlice';
+import topicsSlice from './features/topics/topicsSlice';
 
 const rootReducer = combineReducers({
   signup: signupReducer,
   authData: authReducer,
-  allResources: allResourcesReducer
+  allResources: allResourcesReducer,
+  allTopics: topicsSlice
 });
 
 const persistConfig = {
