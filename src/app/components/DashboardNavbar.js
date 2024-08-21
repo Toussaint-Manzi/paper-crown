@@ -71,8 +71,8 @@ const DashboardNavbar = () => {
               </Link>
             </li>
             <li className="relative">
-              <Link href="/our-impact">
-                <p className={`font-medium ${router.pathname === '/our-impact' ? 'text-[#D71A30] font-bold' : 'text-black hover:text-[#D71A30]'}`}>Reach out</p>
+              <Link href="/contact">
+                <p className={`font-medium ${router.pathname === '/contact' ? 'text-[#D71A30] font-bold' : 'text-black hover:text-[#D71A30]'}`}>Reach out</p>
               </Link>
             </li>
           </ul>
