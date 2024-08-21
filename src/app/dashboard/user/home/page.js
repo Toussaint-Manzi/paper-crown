@@ -11,6 +11,7 @@ import { getAllResources, getAllTopics } from '@/lib/services/userServices';
 import { AiOutlineInbox } from "react-icons/ai";
 import Footer from '@/app/components/Footer';
 import { useRouter } from 'next/navigation';
+import DashboardNavbar from '@/app/components/DashboardNavbar';
 
 const Home = () => {
     const router = useRouter();
@@ -62,8 +63,8 @@ const Home = () => {
 
     return (
         <div className='bg-white h-full'>
-            <Navbar />
-            <div className='px-[15%] pt-[150px]'>
+            <DashboardNavbar/>
+            <div className='px-[15%] pt-[150px] min-h-screen'>
                 <div className='w-full flex justify-between'>
                     <div>
                         <h1 className='text-[20px] text-black font-[700]'>Morning ! <span className='font-[300] ml-3'>{user.fullname}</span></h1>

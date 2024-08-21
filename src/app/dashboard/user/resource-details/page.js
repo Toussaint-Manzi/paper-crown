@@ -4,41 +4,87 @@ import Navbar from '@/app/components/Navbar'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import styles from '../../../styles/home.module.css';
+import { LoadingButton } from '@mui/lab';
 // import { useRouter } from 'next/router';
 import { useSearchParams } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllResources } from '@/lib/services/userServices';
+import { addComment, getAllResources } from '@/lib/services/userServices';
+import DashboardNavbar from '@/app/components/DashboardNavbar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Footer from '@/app/components/Footer';
 
 const ResourceDetails = () => {
     // const router = useRouter()
     const [ selectedResource, setSelectedResource ] = useState({});
     const [ isLoading, setIsLoading ] = useState(false);
+    const [ isCommenting, setIsCommenting ] = useState(false);
+    const [ comment, setComment ] = useState('');
     const searchParams = useSearchParams();
     const user = useSelector( state => state.authData.userClient)
+    const resources = useSelector(state => state.allResources);
     const dispatch = useDispatch();
 
 
     useEffect(() => {
-        setIsLoading(true);
-        const data = searchParams.get('data');
-        let resourceData;
-        try {
-            resourceData = JSON.parse(decodeURIComponent(data));
-            setSelectedResource(resourceData.resource);
-        } catch (error) {
-            console.error('Error parsing data:', error);
-        } finally {
+        const fetchData = async () => {
+            setIsLoading(true);
+            const data = searchParams.get('data');
+            let resourceId;
+
+            try {
+                const resourceData = JSON.parse(decodeURIComponent(data));
+                resourceId = resourceData.resource?.id;
+            } catch (error) {
+                console.error('Error parsing data:', error);
+            }
+
+            if (resourceId) {
+                // Find the resource by ID from the Redux state
+                const resourceFromStore = resources.find(res => res.id === resourceId);
+                if (resourceFromStore) {
+                    setSelectedResource(resourceFromStore);
+                } else {
+                    // If not found, you might want to handle it (e.g., show an error or redirect)
+                    console.error('Resource not found in store');
+                }
+            }
+
             setIsLoading(false);
-        }
-    }, []);
+        };
+
+        fetchData();
+    }, [searchParams, resources]); // Ensure resources is a dependency
 
     useEffect(() =>{
         dispatch(getAllResources());
     },[dispatch])
 
+    const handleComments = async() => {
+        setIsCommenting(true);
+        try {
+            const response = await dispatch(addComment({ resourceId:selectedResource.id, content: comment }));
+            if(response.payload.status === 201 || response.payload.status === 200) {
+                dispatch(getAllResources());
+                setComment('');
+            } else {
+                toast.error('Commenting failed , please try again', {
+                    autoClose: 3000,
+                });
+            }
+        } catch (error) {
+            toast.error('Commenting failed , please try again', {
+                autoClose: 3000,
+              });
+        } finally {
+            setIsCommenting(false);
+        }
+    }
+
   return (
     <div className='bg-white h-full'>
-        <Navbar/>
+        <ToastContainer/>
+        <DashboardNavbar/>
         { isLoading ? 
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
             <rect width="2.8" height="12" x="1" y="6" fill="#3b82f6">
@@ -62,7 +108,7 @@ const ResourceDetails = () => {
                 <animate attributeName="height" begin="svgSpinnersBarsScale0.begin+0.4s" calcMode="spline" dur="0.6s" keySplines=".36,.61,.3,.98;.36,.61,.3,.98" values="12;22;12"/>
             </rect>
         </svg>:
-        <div className='w-full px-[10%] pt-[150px]'>
+        <div className='w-full px-[10%] pt-[150px] pb-20'>
             <div className='w-full flex justify-between'>
                 <div className='w-[65%]'>
                     <div className='w-full h-[400px] relative'>
@@ -178,9 +224,12 @@ const ResourceDetails = () => {
                                 <h1 className='text-[16px] text-black font-[500]'>{selectedResource.comments && selectedResource?.comments.length}</h1>
                             </div>
                         </div>
-                        <textarea name="" rows={5} id="" placeholder='Write something...' className='w-full my-7 px-4 py-2 outline-none text-[#000] border border-[#F4F4F4]'></textarea>
+                        <textarea name="" rows={5} value={comment} id="" placeholder='Write something...' className='w-full mt-7 mb-2 px-4 py-2 outline-none text-[#000] border border-[#F4F4F4]' onChange={(e) => setComment(e.target.value)}></textarea>
+                        <LoadingButton variant="contained" loading={isCommenting} sx={{ ml: 'auto', mb: 3 }} onClick={handleComments}>
+                            Comment
+                        </LoadingButton>
                     </div>
-                    <div className='w-full'>
+                    <div className='w-full h-[350px] overflow-y-scroll'>
                         { selectedResource.comments && (
                             selectedResource.comments.map((comment, index) => (
                                 <div className='border border-[#F4F4F4] p-4' key={index}>
@@ -205,7 +254,7 @@ const ResourceDetails = () => {
                                             <h1 className='text-[14px] text-black font-[400]'>
                                                 { comment.user.id === user?.id ? 'You' : comment?.user?.fullname }
                                             </h1>
-                                            <h1 className='text-[12px] text-[#B0B0B0] font-[600]'>{comment?.createdAt.substring(0,10)}</h1>
+                                            <h1 className='text-[12px] text-[#B0B0B0] font-[600]'>{comment?.createdAt.substring(0,10)} <span className='ml-2'>{comment?.createdAt.substring(11,16)}</span></h1>
                                         </div>
                                     </div>
                                     <h1 className='text-[14px] text-[#B0B0B0] font-[400] my-3'>{comment?.content}</h1>
@@ -218,6 +267,7 @@ const ResourceDetails = () => {
                 
             </div>
         </div>}
+        <Footer/>
     </div>
   )
 }

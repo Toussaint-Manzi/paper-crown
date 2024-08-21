@@ -7,7 +7,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 // get access token from redux
 export const selectAccessToken = (state) =>
-  state.authData.accessToken;
+  state.authData.access_token;
 
 export const getAllResources = createAsyncThunk(
   'resources',
@@ -39,6 +39,27 @@ export const getAllTopics = createAsyncThunk(
       const response = await axios.get(`${API_BASE_URL}/api/v1/topic`);
       const { data } = response.data;
       return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addComment = createAsyncThunk(
+  'comment/add',
+  async ({ resourceId, content }, thunkAPI) => {
+    const accessToken = selectAccessToken(thunkAPI.getState()); // Get access token from selector
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+
+    try {
+      const response = await axios.post(`${API_BASE_URL}/api/v1/comment/${resourceId}`, {
+        content
+      }, {
+        headers
+      });
+      return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
