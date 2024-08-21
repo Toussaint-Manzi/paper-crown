@@ -9,8 +9,8 @@ import { MdEmail } from 'react-icons/md';
 
 const Footer = () => {
   return (
-    <footer className={`h-[300px] bg-black w-full px-[13%] ${styles.myFont}`}>
-        <div className='flex w-full h-full justify-between items-center'>
+    <footer className={`bottom-0 h-full bg-black w-full px-[13%] ${styles.myFont}`}>
+        <div className='bg-black flex w-full h-full justify-between items-center pb-10 pt-20'>
             <div className='flex justify-between w-[50%]'>
                 <div className='w-40 h-20 relative'>
                     <Image src={logo} fill alt="Logo" />
@@ -39,7 +39,7 @@ const Footer = () => {
         </div>
         <div className='h-[1px] w-full bg-gray-700 mt-2'>
         </div>
-        <div className='mt-5 pb-10 w-full flex justify-between items-center xl:flex-col'>
+        <div className='bg-black pt-5 pb-10 w-full flex justify-between items-center xl:flex-col'>
             <p className='text-white'>Paper Crown © {new Date().getFullYear()} All rights reserved</p>
         </div> 
     </footer>

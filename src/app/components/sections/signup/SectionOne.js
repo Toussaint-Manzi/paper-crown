@@ -29,8 +29,8 @@ const SectionOne = () => {
             <div className='w-full flex flex-col justify-between'>
                 <div className='w-full mb-3'>
                     <label className='text-[18px] text-black'>Full name</label>
-                    <input type="text" name="fullName" placeholder='Enter fullName' className='w-full mt-3 text-[#A4A4A4] px-5 h-[50px] bg-[#f0f8fc] rounded-lg placeholder:text-[#A4A4A4] outline-none' {...register('fullName')} />
-                    {errors.fullName && <p className="text-red-500">{errors.fullName.message}</p>}
+                    <input type="text" name="fullname" placeholder='Enter fullname' className='w-full mt-3 text-[#A4A4A4] px-5 h-[50px] bg-[#f0f8fc] rounded-lg placeholder:text-[#A4A4A4] outline-none' {...register('fullname')} />
+                    {errors.fullname && <p className="text-red-500">{errors.fullname.message}</p>}
                 </div>
                 <div className='w-full mb-3'>
                     <label className='text-[18px] text-black'>Email</label>

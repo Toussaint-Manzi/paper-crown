@@ -9,10 +9,10 @@ export const selectAccessToken = (state) =>
 
 export const userSignInAsync = createAsyncThunk(
   '/auth/user/sign-in',
-  async ({ email, password }, thunkAPI) => {
+  async ({ account, password }, thunkAPI) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/v1/auth/login`, {
-        account:email,
+      const response = await axios.post(`${API_BASE_URL}/api/v1/user/login`, {
+        account,
         password,
       });
       const { data } = response;
@@ -23,25 +23,19 @@ export const userSignInAsync = createAsyncThunk(
   }
 );
 
-export const userSignUpAsync = async ({
-    email,
-    password,
-    phone,
-    role
-    }) => {
+export const userSignUpAsync = createAsyncThunk(
+  '/auth/user/sign-up',
+  async ({ formData }, thunkAPI) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/v1/account/signup`, {
-        email,
-        password,
-        phone,
-        role
+      const response = await axios.post(`${API_BASE_URL}/api/v1/user/signup`, {
+        ...formData, gender:'male'
       });
-      const { status } = response;
-      return status;
+      return response;
     } catch (error) {
-      return error.response.status;
+      return thunkAPI.rejectWithValue(error);
     }
-};
+  }
+);
 
 export const otpVerification = async ({otpCode}) => {
   try {
