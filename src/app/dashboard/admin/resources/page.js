@@ -18,6 +18,24 @@ const Resources = () => {
         dispatch(getAllResources());
     }, [dispatch]);
 
+    const columns = [
+        { id: 'number', label: '#', minWidth: 50 },
+        { id: 'thumbnail', label: 'Thumbnail', minWidth: 100, render: (value) => <img src={value} alt="thumbnail" style={{ width: 50, height: 50 }} /> },
+        { id: 'title', label: 'Title', minWidth: 170, editable: true },
+        { id: 'comments', label: 'Comments', minWidth: 100, render: (value) => value.length },
+        { id: 'resources', label: 'Resources', minWidth: 100, render: (value) => value.length },
+        { id: 'likes', label: 'Likes', minWidth: 100, render: (value) => value.length },
+        // Add more columns as needed
+      ];
+    
+      const handleEdit = (updatedRow) => {
+        console.log('Updated row:', updatedRow);
+      };
+    
+      const handleDelete = (rowToDelete) => {
+        console.log('Deleted row:', rowToDelete);
+      };
+
     return (
         <div className={`bg-white ${styles.myFont}`}>
             <SideBar />
@@ -29,7 +47,15 @@ const Resources = () => {
                             <FiPlus className='text-sm mr-2 mt-1px'/>Add Resource
                         </button>
                     </div>
-                    <DataTable rows={allResources} />
+                    <div>
+                        <h1 className='text-black text-xl'>My Resources</h1>
+                        <DataTable
+                            columns={columns}
+                            rows={allResources}
+                            onEdit={handleEdit}
+                            onDelete={handleDelete}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,35 +1,27 @@
-import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import Modal from '@mui/material/Modal';
-import TextField from '@mui/material/TextField';
+import React from 'react';
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  IconButton,
+  Modal,
+  Button,
+  TextField,
+} from '@mui/material';
 import { FaEdit } from 'react-icons/fa';
 import { IoTrashBinSharp } from 'react-icons/io5';
 
-const columns = [
-  { id: 'number', label: '#', minWidth: 50 },
-  { id: 'thumbnail', label: 'Thumbnail', minWidth: 100 },
-  { id: 'title', label: 'Title', minWidth: 170 },
-  { id: 'comments', label: 'Comments', minWidth: 100 },
-  { id: 'resources', label: 'Resources', minWidth: 100 },
-  { id: 'likes', label: 'Likes', minWidth: 100 },
-  { id: 'actions', label: 'Actions', minWidth: 150 },
-];
-
-export default function DataTable({ rows }) {
+function DataTable({ columns = [], rows = [], onEdit, onDelete }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
-  const [openUpdateModal, setOpenUpdateModal] = React.useState(false);
-  const [selectedResource, setSelectedResource] = React.useState(null);
+  const [openEditModal, setOpenEditModal] = React.useState(false);
+  const [selectedRow, setSelectedRow] = React.useState(null);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -40,37 +32,39 @@ export default function DataTable({ rows }) {
     setPage(0);
   };
 
-  const handleDeleteClick = (resource) => {
-    setSelectedResource(resource);
+  const handleDeleteClick = (row) => {
+    setSelectedRow(row);
     setOpenDeleteModal(true);
   };
 
-  const handleUpdateClick = (resource) => {
-    setSelectedResource(resource);
-    setOpenUpdateModal(true);
+  const handleEditClick = (row) => {
+    setSelectedRow(row);
+    setOpenEditModal(true);
   };
 
   const handleCloseDeleteModal = () => {
     setOpenDeleteModal(false);
-    setSelectedResource(null);
+    setSelectedRow(null);
   };
 
-  const handleCloseUpdateModal = () => {
-    setOpenUpdateModal(false);
-    setSelectedResource(null);
+  const handleCloseEditModal = () => {
+    setOpenEditModal(false);
+    setSelectedRow(null);
   };
 
   const handleDeleteConfirm = () => {
-    // Implement deletion logic here
-    console.log(`Resource with ID ${selectedResource.id} deleted.`);
+    if (onDelete) {
+      onDelete(selectedRow);
+    }
     handleCloseDeleteModal();
   };
 
-  const handleUpdateSubmit = (event) => {
+  const handleEditSubmit = (event) => {
     event.preventDefault();
-    // Implement update logic here
-    console.log('Resource updated:', selectedResource);
-    handleCloseUpdateModal();
+    if (onEdit) {
+      onEdit(selectedRow);
+    }
+    handleCloseEditModal();
   };
 
   return (
@@ -83,12 +77,16 @@ export default function DataTable({ rows }) {
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
-                    align={column.align}
+                    align={column.align || 'left'}
                     style={{ minWidth: column.minWidth }}
                   >
                     {column.label}
                   </TableCell>
                 ))}
+                {/* Actions Column */}
+                <TableCell key="actions" align="center">
+                  Actions
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -97,16 +95,13 @@ export default function DataTable({ rows }) {
                 .map((row, index) => {
                   return (
                     <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                      <TableCell>{index + 1 + page * rowsPerPage}</TableCell>
-                      <TableCell>
-                        <img src={row.thumbnail[0]} alt="Thumbnail" style={{ width: 50, height: 50 }} />
-                      </TableCell>
-                      <TableCell>{row.title}</TableCell>
-                      <TableCell>{row.comments.length}</TableCell>
-                      <TableCell>{row.resources.length}</TableCell>
-                      <TableCell>{row.likes.length}</TableCell>
-                      <TableCell>
-                        <IconButton onClick={() => handleUpdateClick(row)}>
+                      {columns.map((column) => (
+                        <TableCell key={column.id} align={column.align || 'left'}>
+                          {column.render ? column.render(row[column.id], row) : row[column.id]}
+                        </TableCell>
+                      ))}
+                      <TableCell align="center">
+                        <IconButton onClick={() => handleEditClick(row)}>
                           <FaEdit />
                         </IconButton>
                         <IconButton onClick={() => handleDeleteClick(row)}>
@@ -149,7 +144,7 @@ export default function DataTable({ rows }) {
         >
           <h2 id="delete-modal-title">Confirm Delete</h2>
           <p id="delete-modal-description">
-            Are you sure you want to delete the resource titled "{selectedResource?.title}"?
+            Are you sure you want to delete this item?
           </p>
           <Button variant="contained" color="secondary" onClick={handleDeleteConfirm}>
             Delete
@@ -160,12 +155,12 @@ export default function DataTable({ rows }) {
         </Paper>
       </Modal>
 
-      {/* Update Resource Modal */}
+      {/* Edit Resource Modal */}
       <Modal
-        open={openUpdateModal}
-        onClose={handleCloseUpdateModal}
-        aria-labelledby="update-modal-title"
-        aria-describedby="update-modal-description"
+        open={openEditModal}
+        onClose={handleCloseEditModal}
+        aria-labelledby="edit-modal-title"
+        aria-describedby="edit-modal-description"
       >
         <Paper
           style={{
@@ -177,33 +172,28 @@ export default function DataTable({ rows }) {
             width: '600px',
           }}
         >
-          <h2 id="update-modal-title">Update Resource</h2>
-          <form onSubmit={handleUpdateSubmit}>
-            <TextField
-              label="Title"
-              fullWidth
-              margin="normal"
-              value={selectedResource?.title || ''}
-              onChange={(e) =>
-                setSelectedResource((prev) => ({ ...prev, title: e.target.value }))
-              }
-            />
-            <TextField
-              label="Content"
-              fullWidth
-              margin="normal"
-              value={selectedResource?.content || ''}
-              onChange={(e) =>
-                setSelectedResource((prev) => ({ ...prev, content: e.target.value }))
-              }
-            />
-            {/* Add other fields like Thumbnail, Resources, etc. as needed */}
+          <h2 id="edit-modal-title">Edit Item</h2>
+          <form onSubmit={handleEditSubmit}>
+            {columns.map((column) => (
+              column.editable && (
+                <TextField
+                  key={column.id}
+                  label={column.label}
+                  fullWidth
+                  margin="normal"
+                  value={selectedRow ? selectedRow[column.id] : ''}
+                  onChange={(e) =>
+                    setSelectedRow((prev) => ({ ...prev, [column.id]: e.target.value }))
+                  }
+                />
+              )
+            ))}
             <Button variant="contained" color="primary" type="submit">
               Update
             </Button>
             <Button
               variant="outlined"
-              onClick={handleCloseUpdateModal}
+              onClick={handleCloseEditModal}
               style={{ marginLeft: '10px' }}
             >
               Cancel
@@ -214,3 +204,5 @@ export default function DataTable({ rows }) {
     </>
   );
 }
+
+export default DataTable;
